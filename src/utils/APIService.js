@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+
 const BASE_URL = "https://youtube-v31.p.rapidapi.com";
 
 const options = {
@@ -14,10 +14,19 @@ const options = {
 };
 
 export const APIService = async (url) => {
-  const cancelTokenSource = axios.CancelToken.source();
-  const { data } = await axios.get(`${BASE_URL}/${url}`, {
-    cancelToken: cancelTokenSource.token,
-  });
-  cancelTokenSource.cancel();
+  const { data } = await axios.get(`${BASE_URL}/${url}`, options);
   return data;
 };
+
+// export const APIService = async (url) => {
+//   const cancelTokenSource = axios.CancelToken.source();
+//   const { data } = await axios.get(
+//     `${BASE_URL}/${url}`,
+//     {
+//       cancelToken: cancelTokenSource.token,
+//     },
+//     options
+//   );
+//   cancelTokenSource.cancel();
+//   return data;
+// };
