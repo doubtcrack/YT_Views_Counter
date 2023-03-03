@@ -12,36 +12,42 @@ const VideoDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // APIService(`videos?part=snippet,statistics&id=${id}`).then((data) =>
-    //   setvideoDetail(data.items[0])
-    // );
-    // APIService(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
-    //   (data) => setVideos(data.items)
-    // );
-  }, [id, videoDetail]);
+    APIService(`videos?part=snippet,statistics&id=${id}`).then((data) =>
+      setvideoDetail(data.items[0])
+    );
+    APIService(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
+      (data) => setVideos(data.items)
+    );
+  }, []);
 
   if (!videoDetail?.snippet) return "Loading...";
 
-  // const {
-  //   snippet: { title, channelId, channelTitle },
-  //   statistics: { viewCount, likeCount },
-  // } = videoDetail;
+  const {
+    snippet: { title, channelId, channelTitle },
+    statistics: { viewCount, likeCount },
+  } = videoDetail;
 
   return (
     <Box justifyContent="center" alignItem="center" display="flex">
       <Stack direction={{ xs: "column", md: "row" }}>
-        <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
+        <Box
+          sx={{
+            width: "80%",
+            position: "sticky",
+            top: "86px",
+          }}
+        >
           <ReactPlayer
-            width="300px"
+            width="100%"
             height="500px"
             url={`https://www.youtube.com/watch?v=${id}`}
             className="react-player"
             controls
           />
           <Typography color="#FFF" variant="h5" fontWeight="bold" p={2}>
-            {/* {title} */}
+            {title}
           </Typography>
-          {/* <Stack
+          <Stack
             direction="row"
             justifyContent="space-between"
             sx={{
@@ -66,7 +72,7 @@ const VideoDetail = () => {
                 {parseInt(likeCount).toLocaleString()} likes
               </Typography>
             </Stack>
-          </Stack> */}
+          </Stack>
         </Box>
       </Stack>
     </Box>

@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   Navbar,
   Feed,
-  // VideoDetail,
-  // ChannelDetail,
+  VideoDetail,
+  ChannelDetail,
   SearchFeed,
   NotFoundPage,
 } from "./components";
@@ -16,8 +16,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" exact element={<Feed />} />
-          {/* <Route path="/video/:id" exact element={<VideoDetail />} />
-          <Route path="/channel/:id" exact element={<ChannelDetail />} /> */}
+          <Route path="/video/:id" exact element={<VideoDetail />} />
+          <Route path="/channel/:id" exact element={<ChannelDetail />} />
           <Route path="/:searchTerm" exact element={<SearchFeed />} />
           <Route path="/*" exact element={<NotFoundPage />} />
         </Routes>

@@ -1,4 +1,3 @@
-import { CheckCircle } from "@mui/icons-material";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import {
@@ -23,13 +22,13 @@ const VideoCard = ({
         borderRadius: "5px",
       }}
     >
-      {/* <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}> */}
-      <CardMedia
-        image={snippet?.thumbnails?.high?.url}
-        alt={snippet?.title}
-        sx={{ width: 500, height: 250 }}
-      />
-      {/* </Link> */}
+      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+        <CardMedia
+          image={snippet?.thumbnails?.high?.url}
+          alt={snippet?.title}
+          sx={{ width: 500, height: 250 }}
+        />
+      </Link>
     </Card>
   );
 };
